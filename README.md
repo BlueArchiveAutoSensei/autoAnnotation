@@ -11,7 +11,7 @@
 1. 在工作目录创建inputs文件夹，并在其中添加需要合成的前景视频（foreground_video_raw.mp4）与背景视频（background_video.mp4）
 2. foreground_video_raw.mp4建议分辨率为1080*1350，时长为20秒内，内容为学生加绿幕，可使用ae与clipchamp制作。示例见下方
 3. background_video.mp4建议分辨率为2560*1440，时长为20秒内，内容为空的地图背景，可使用ae制作。示例见下方
-4. 在cache/result_pic目录中可查看合成出的图片，格式为frame__xxxx.png
+4. 运行test.py，在cache/result_pic目录中可查看合成出的图片，格式为frame__xxxx.png
 5. 如有将合成出的图片生成视频的需求，请创建outputs文件夹，并运行generate_video.py
 
 ![foreground_video_raw.mp4图片示例](https://github.com/BlueArchiveAutoSensei/autoAnnotation/blob/dev/foreground_video_raw_example.png)
