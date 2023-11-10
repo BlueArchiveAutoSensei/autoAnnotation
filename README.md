@@ -18,7 +18,7 @@
 
 ![background_video.mp4图片示例](https://github.com/BlueArchiveAutoSensei/autoAnnotation/blob/dev/background_video_example.png)
 
-### v1.0.0
+### v0.0.1
 
 已实现：
 
