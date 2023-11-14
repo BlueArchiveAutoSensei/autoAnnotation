@@ -1,6 +1,7 @@
 from PIL import Image
 from config import Config
 
+
 # 前景图片等比例缩放
 # 1080*1350的学生图片建议max_size为280
 def resize_image(input_image_path, output_image_path, max_size):
@@ -23,22 +24,31 @@ def resize_image(input_image_path, output_image_path, max_size):
     # 保存缩放后的图片
     resized_image.save(output_image_path)
 
-def replace_green_range_with_transparent(input_image_path, output_image_path, tolerance):
-    image = Image.open(input_image_path)
-    image = image.convert("RGBA")  # 将图片转换为RGBA模式
 
-    data = image.getdata()  # 获取图片的像素数据
-    new_data = []  # 存储修改后的像素数据
+def replace_green_range_with_transparent(
+    input_image_path, output_image_path, tolerance
+):
+    image = Image.open(input_image_path)
+    # 将图片转换为RGBA模式
+    image = image.convert("RGBA")
+
+    # 获取图片的像素数据
+    data = image.getdata()
+    # 存储修改后的像素数据
+    new_data = []
 
     for item in data:
         # 判断当前像素的颜色是否在绿色范围内
         if is_green_range(item[:3], tolerance):
-            new_data.append((item[0], item[1], item[2], 0))  # 将绿色像素修改为透明
+            # 将绿色像素修改为透明
+            new_data.append((item[0], item[1], item[2], 0))
         else:
             new_data.append(item)
+    # 更新图片的像素数据
+    image.putdata(new_data)
+    # 保存修改后的图片
+    image.save(output_image_path, "PNG")
 
-    image.putdata(new_data)  # 更新图片的像素数据
-    image.save(output_image_path, "PNG")  # 保存修改后的图片
 
 def is_green_range(color, tolerance):
     # 定义绿色范围的上下限
@@ -51,10 +61,11 @@ def is_green_range(color, tolerance):
             return False
     return True
 
-def process_foreground_pic(foreground_pic_raw_1:str):
+
+def process_foreground_pic(foreground_pic_raw_1: str):
     config = Config()
     filename = foreground_pic_raw_1[27:37]
-    foreground_pic = config.foreground_pic_path + '/' + filename + '.png'
-    foreground_pic_raw_2 = config.foreground_pic_raw_2_path + '/' + filename + '.png'
-    replace_green_range_with_transparent(foreground_pic_raw_1,foreground_pic_raw_2,70)
-    resize_image(foreground_pic_raw_2,foreground_pic, 280)
+    foreground_pic = config.foreground_pic_path + "/" + filename + ".png"
+    foreground_pic_raw_2 = config.foreground_pic_raw_2_path + "/" + filename + ".png"
+    replace_green_range_with_transparent(foreground_pic_raw_1, foreground_pic_raw_2, 70)
+    resize_image(foreground_pic_raw_2, foreground_pic, 280)
