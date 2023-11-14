@@ -1,5 +1,5 @@
 from config import Config, init
-from composite_pic import video_to_compound_pic
+from compositePic import video_to_compound_pic
 
 config = Config()
 try:
