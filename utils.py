@@ -114,7 +114,7 @@ def generate_rectangles_in_polygon(num_rectangles, rectangle_size, polygon):
     # 辅助函数：检查重叠
     def check_overlap(new_rect):
         for rect in rectangles:
-            if new_rect.intersection(rect).area > 0.3 * new_rect.area:
+            if new_rect.intersection(rect).area > 0.6 * new_rect.area:
                 return True
         return False
 
