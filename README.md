@@ -6,17 +6,42 @@
 
 进阶操作：绿幕素材可包含常见特效，例如体香的蓝盾等各种光污染；合成方式不局限于小人普通地合成在地图上，可包含多个小人的多种互相遮挡等。
 
+***
+
 ### 操作指南
 
-1. 在工作目录创建inputs文件夹，并在其中添加需要合成的前景视频（foreground_video_raw.mp4）与背景视频（background_video.mp4）
-2. foreground_video_raw.mp4建议分辨率为1080*1350，时长为20秒内，内容为学生加绿幕，可使用ae与clipchamp制作。示例见下方
-3. background_video.mp4建议分辨率为2560*1440，时长为20秒内，内容为空的地图背景，可使用ae制作。示例见下方
-4. 运行test.py，在cache/result_pic目录中可查看合成出的图片，格式为frame__xxxx.png
-5. 如有将合成出的图片生成视频的需求，请创建outputs文件夹，并运行generate_video.py
+1. 在test.py中按样例修改
+2. 角色视频分辨率要求统一，时长为150秒内，内容为小人加绿幕，可使用ae与clipchamp制作。
+3. 背景视频，时长为150秒内，内容为空的地图背景，可使用ae制作。
+4. 运行test.py，在outputs目录中可查看生成的数据集
 
-![foreground_video_raw.mp4图片示例](https://github.com/BlueArchiveAutoSensei/autoAnnotation/blob/dev/foreground_video_raw_example.png)
+***
 
-![background_video.mp4图片示例](https://github.com/BlueArchiveAutoSensei/autoAnnotation/blob/dev/background_video_example.png)
+### v1.0.0
+
+已实现：
+
+1. 视频分割图片
+2. 角色图片处理
+    1. 去绿幕
+    2. 缩放
+3. 角色图片与背景图片的简单合成
+    1. 随机坐标生成
+    2. 多角色合成
+4. 数据集生成
+
+待实现：
+
+1. 线程优化，运行速度优化
+2. 替换以frame_xxxxx.png的命名方式，用随机字符串代替
+3. 地图数据存储（背景视频，地板范围）
+4. 支持特效合成到背景
+5. 角色图片随机合成顺序
+~~1. 去绿幕算法改进~~
+~~2. 生成yolov8标注文件~~
+~~3. 自定义分割帧数~~
+~~4. 随机坐标生成算法改进~~
+
 
 ### v0.0.1
 
