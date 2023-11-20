@@ -170,14 +170,17 @@ class Sythesizer(object):
     def _generate_txts_for_annotation(self):
         annotation_dict = self.__annotation_dict
         map_img_size = self.map._img_size
+        character_img_size_list = list()
+        for character in self.character_list:
+            character_img_size_list.append(character._img_size)
         # 遍历外层字典
         for file_name, positions_dict in annotation_dict.items():
             # 遍历内层字典
-            for position_index, pos in positions_dict.items():
-                character_img_size = self.character_list[position_index]._img_size
+            for label_index, pos in positions_dict.items():
+                character_img_size = character_img_size_list[label_index]
                 generate_txt_for_annotation(
                     file_name,
-                    position_index,
+                    label_index,
                     pos,
                     character_img_size,
                     map_img_size,
