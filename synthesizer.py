@@ -18,7 +18,7 @@ from utils import (
 
 # 一个合成器的输入为：
 # 1.一个地图背景图片目录
-# 2.若干个角色图片目录 TODO
+# 2.若干个角色图片目录
 ## 支持单一角色的重复不同位置合成（例如总力战球的小兵） TODO
 # 3.若干个、若干种特效图片目录 TODO
 ## 特效图片我暂且分为 绑定在地图背景的特效 与 绑定在角色附近或上方的特效 TODO
@@ -101,11 +101,12 @@ class Sythesizer(object):
         pos_list = []
         polygon_coords = self.map.floor_pos_range
         polygon = Polygon(polygon_coords)
-        label_num = len(self.labels)
-        img_size = self.character_list[0]._img_size
+        character_img_size_list = list()
+        for character in self.character_list:
+            character_img_size_list.append(character._img_size)
         file_num = len(os.listdir(self.character_list[0]._img_folder))
         for i in range(file_num):
-            rects_pos = generate_rectangles_in_polygon(label_num, img_size, polygon)
+            rects_pos = generate_rectangles_in_polygon(character_img_size_list, polygon)
             pos_list.append(rects_pos)
         self.__pos_list = pos_list
 
@@ -224,4 +225,4 @@ class FileCoordinateManager:
 
 if __name__ == "__main__":
     shutil.rmtree("cache")
-    shutil.rmtree("outputs")
+#    shutil.rmtree("outputs")

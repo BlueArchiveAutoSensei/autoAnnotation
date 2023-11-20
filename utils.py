@@ -101,27 +101,29 @@ def get_filenames_without_extension(directory):
     return filenames
 
 # 在多边形内生成若干随机矩形，每个重叠面积不超过30%，且不能超过多边形边界
-def generate_rectangles_in_polygon(num_rectangles, rectangle_size, polygon):
+def generate_rectangles_in_polygon(rectangle_size_list, polygon):
     rectangles = []
 
-    # 辅助函数：生成一个随机矩形
-    def generate_random_rectangle():
+    # 辅助函数：生成一个矩形，大小按照rectangle_size_list的顺序
+    def generate_sequential_rectangle(size):
         minx, miny, maxx, maxy = polygon.bounds
-        x = random.uniform(minx, maxx - rectangle_size[0])
-        y = random.uniform(miny, maxy - rectangle_size[1])
-        return box(x, y, x + rectangle_size[0], y + rectangle_size[1])
+        x = random.uniform(minx, maxx - size[0])
+        y = random.uniform(miny, maxy - size[1])
+        return box(x, y, x + size[0], y + size[1])
 
     # 辅助函数：检查重叠
     def check_overlap(new_rect):
         for rect in rectangles:
-            if new_rect.intersection(rect).area > 0.6 * new_rect.area:
+            if new_rect.intersection(rect).area > 0.5 * new_rect.area:
                 return True
         return False
 
-    while len(rectangles) < num_rectangles:
-        new_rect = generate_random_rectangle()
-        if polygon.contains(new_rect) and not check_overlap(new_rect):
-            rectangles.append(new_rect)
+    for size in rectangle_size_list:
+        while True:
+            new_rect = generate_sequential_rectangle(size)
+            if polygon.contains(new_rect) and not check_overlap(new_rect):
+                rectangles.append(new_rect)
+                break
 
     # 返回矩形的左下角坐标
     return [(int(rect.bounds[0]), int(rect.bounds[1])) for rect in rectangles]
