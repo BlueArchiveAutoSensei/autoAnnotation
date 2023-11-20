@@ -83,13 +83,13 @@ class Map(Material):
 
 # Character类：角色绿幕视频
 class Character(Material):
-    def __init__(self, name, video_path, resize_to_what_size) -> None:
+    def __init__(self, name, video_path) -> None:
         # 从Material父类继承视频路径
         super(Character, self).__init__(video_path)
         # 角色名称
         self.name = name
-        # 角色图片缩放后的最大像素
-        self.resize_to_what_size = resize_to_what_size
+        # # 角色图片缩放后的最大像素
+        # self.resize_to_what_size = resize_to_what_size
         # 工作文件夹和输出文件夹的父级目录
         self.__img_folder_tmp = "cache"
         # 工作文件夹1：放置视频分割后的图片
@@ -110,34 +110,34 @@ class Character(Material):
     def __split_video_to_images(self):
         return super()._split_video_to_images(self.__work_folder_1)
 
-    def __resize_images_in_folder(self):
+    # def __resize_images_in_folder(self):
+    #     for filename in os.listdir(self.__work_folder_1):
+    #         # 检查是否为图像文件
+    #         if filename.lower().endswith((".jpg", ".png", ".jpeg", ".gif", ".bmp")):
+    #             input_image_path = os.path.join(self.__work_folder_1, filename)
+    #             output_image_path = os.path.join(self.__work_folder_2, filename)
+
+    #             original_image = Image.open(input_image_path)
+    #             width, height = original_image.size
+
+    #             ratio = 1  # 默认比例为1，表示不缩放
+    #             if width > height and width > self.resize_to_what_size:
+    #                 ratio = self.resize_to_what_size / width
+    #             elif height > self.resize_to_what_size:
+    #                 ratio = self.resize_to_what_size / height
+
+    #             new_width = int(width * ratio)
+    #             new_height = int(height * ratio)
+    #             resized_image = original_image.resize((new_width, new_height))
+
+    #             resized_image.save(output_image_path)
+
+    # 因为是process的最后一步所以需要传入target_folder
+    def __replace_green_range_with_transparent(self, target_folder):
         for filename in os.listdir(self.__work_folder_1):
             # 检查是否为图像文件
             if filename.lower().endswith((".jpg", ".png", ".jpeg", ".gif", ".bmp")):
                 input_image_path = os.path.join(self.__work_folder_1, filename)
-                output_image_path = os.path.join(self.__work_folder_2, filename)
-
-                original_image = Image.open(input_image_path)
-                width, height = original_image.size
-
-                ratio = 1  # 默认比例为1，表示不缩放
-                if width > height and width > self.resize_to_what_size:
-                    ratio = self.resize_to_what_size / width
-                elif height > self.resize_to_what_size:
-                    ratio = self.resize_to_what_size / height
-
-                new_width = int(width * ratio)
-                new_height = int(height * ratio)
-                resized_image = original_image.resize((new_width, new_height))
-
-                resized_image.save(output_image_path)
-
-    # 因为是process的最后一步所以需要传入target_folder
-    def __replace_green_range_with_transparent(self, target_folder):
-        for filename in os.listdir(self.__work_folder_2):
-            # 检查是否为图像文件
-            if filename.lower().endswith((".jpg", ".png", ".jpeg", ".gif", ".bmp")):
-                input_image_path = os.path.join(self.__work_folder_2, filename)
                 output_image_path = os.path.join(target_folder, filename)
 
                 image = Image.open(input_image_path)
@@ -167,8 +167,8 @@ class Character(Material):
         self.__init_dir()
         # 2.将视频分割成图片
         self.__split_video_to_images()
-        # 3.将图片缩放
-        self.__resize_images_in_folder()
+        # # 3.将图片缩放
+        # self.__resize_images_in_folder()
         # 4.将图片去绿幕
         self.__replace_green_range_with_transparent(self._img_folder)
         # 5.获取图片分辨率

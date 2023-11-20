@@ -9,21 +9,20 @@ from datasetCollator import DatasetCollator
 #      |           |
 #      |           |
 #      C-----------D
-map = Map("street","inputs/map_1.mp4",[(285,536),(339,1315),(1681,1085),(1539,357)])
-# 填写角色名，角色视频路径和最大缩放成的像素大小
-akane = Character("akane","inputs/akane.mp4", 280)
-reisa = Character("reisa","inputs/reisa.mp4", 280)
-wakamo = Character("wakamo","inputs/wakamo.mp4", 280)
-momoi = Character("momoi","inputs/momoi.mp4", 280)
-
+map = Map("street","inputs/map_3.mp4",[(706,304),(609,773),(1598,601),(1447,113)])
 map.process()
-akane.process()
-reisa.process()
-wakamo.process()
-momoi.process()
+# 填写角色名，角色视频路径和最大缩放成的像素大小
+aris = Character("aris","inputs/aris_1.mp4")
+aru = Character("aru","inputs/aru_1.mp4")
+azusa = Character("azusa","inputs/azusa_1.mp4")
+toki = Character("toki","inputs/toki_1.mp4")
+aris.process()
+aru.process()
+azusa.process()
+toki.process()
 
 # 填写数据集中图片最小含量
-sythesizer = Sythesizer(map,[akane,reisa,wakamo,momoi],2000)
+sythesizer = Sythesizer(map,[aris,aru,azusa,toki],2000)
 sythesizer.execute()
 # 填写数据集名称
 datasetCollator = DatasetCollator("dataset",sythesizer.labels,sythesizer._img_and_txt_folder)
