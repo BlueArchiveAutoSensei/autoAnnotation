@@ -169,12 +169,12 @@ class Sythesizer(object):
     # 批量生成标注信息文本文件
     def _generate_txts_for_annotation(self):
         annotation_dict = self.__annotation_dict
-        character_img_size = self.character_list[0]._img_size
         map_img_size = self.map._img_size
         # 遍历外层字典
         for file_name, positions_dict in annotation_dict.items():
             # 遍历内层字典
             for position_index, pos in positions_dict.items():
+                character_img_size = self.character_list[position_index]._img_size
                 generate_txt_for_annotation(
                     file_name,
                     position_index,
@@ -220,5 +220,5 @@ class FileCoordinateManager:
 
 
 if __name__ == "__main__":
-    shutil.rmtree('cache')
-    shutil.rmtree('outputs')
+    shutil.rmtree("cache")
+    shutil.rmtree("outputs")
