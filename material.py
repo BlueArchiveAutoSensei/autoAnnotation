@@ -44,7 +44,7 @@ class Material(object):
 
 # Map类：地图背景视频
 class Map(Material):
-    def __init__(self, name, video_path, floor_pos_range) -> None:
+    def __init__(self, name, video_path, annotation_area) -> None:
         # 从Material父类继承视频路径
         super(Map, self).__init__(video_path)
         # 地图名称
@@ -56,7 +56,7 @@ class Map(Material):
         #      |           |
         #      |           |
         #      C-----------D
-        self.floor_pos_range = floor_pos_range
+        self.annotation_area = annotation_area
         # 工作文件夹和输出文件夹的父集目录
         self.__img_folder_tmp = "cache"
         # 输出文件夹
