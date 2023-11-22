@@ -1,0 +1,53 @@
+{
+    "foundamental_data": {
+        "work_parent_folder": "cache"
+    },
+    "character_data": {
+        "Akane": {
+            "run": {
+                "video_path": "inputs/akane/run.mp4",
+                "annotation_area": null
+            },
+            "attack": {
+                "video_path": "inputs/akane/attack.mp4",
+                "annotation_area": {
+                    "rectangle_size": [],
+                    "top_left_corner_pos": []
+                }
+            },
+            "reloading": {
+                "video_path": "inputs/akane/reloading.mp4",
+                "annotation_area": {
+                    "rectangle_size": [],
+                    "top_left_corner_pos": []
+                }
+            },
+            "ns": {
+                "video_path": "inputs/akane/ns.mp4",
+                "annotation_area": {
+                    "rectangle_size": [],
+                    "top_left_corner_pos": []
+                }
+            },
+            "ex": {
+                "video_path": "inputs/akane/ex.mp4",
+                "annotation_area": {
+                    "rectangle_size": [],
+                    "top_left_corner_pos": []
+                }
+            },
+            "cannot_be_annotated": {}
+        }
+    },
+    "map_data": {
+        "map_1": {
+            "video_path": "inputs/map_1/map_1.mp4",
+            "annotation_area": [
+                [123,123],
+                [456,456],
+                [423,343],
+                [213,213]
+            ]
+        }
+    }
+}
