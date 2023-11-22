@@ -15,8 +15,8 @@
 
 * 准备背景视频：时长为150秒内，内容为空的地图背景，可使用ae制作。
 * 准备角色视频：时长为150秒内，内容为小人加绿幕，可使用ae制作。
-* 在test.py中按样例修改
-* 运行test.py，在outputs目录中可查看生成的数据集
+* 在main.py和meterialData.json中按样例修改
+* 运行main.py，在outputs目录中可查看生成的数据集
 
 <div align="center">
 <img src="sundries/map_video_example.png" alt="logo" width="256" height="auto" /><br>
