@@ -111,10 +111,10 @@ class Sythesizer(object):
         self.__pos_list = pos_list
 
     # 创建数据字典，并填入随机坐标：
-    # "frame_00000":                   # 地图背景图片文件名
-    #       0: (pos_x, pos_y),        # label_index: 坐标
+    # "frame_00000": {                  # 地图背景图片文件名
+    #       0: (pos_x, pos_y),          # label_index: 坐标
     #       1: (pos_x, pos_y),
-    #       ...
+    #       ...}
     # ,
     # "frame_00001":
     #       ...
