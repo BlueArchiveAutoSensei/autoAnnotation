@@ -1,6 +1,7 @@
 # autoAnnotation
 
-![1700637103083](images/README/1700637103083.png)# 
+<div align="center">
+<img src="logo.png" alt="logo" width="256" height="auto" />
 
 ## 此部分为 “动态剪贴画”计划的实现尝试
 
