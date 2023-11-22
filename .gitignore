@@ -1,0 +1,7 @@
+cache/
+inputs/
+outputs/
+draft/
+autoAnnotation.code-workspace
+test2.py
+__pycache__/
