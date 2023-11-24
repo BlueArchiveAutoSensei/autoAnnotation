@@ -99,7 +99,7 @@ class Sythesizer(object):
     # 根据label和文件数量生成若干组随机坐标
     def _init_pos_list(self):
         pos_list = []
-        polygon_coords = self.map.annotation_area
+        polygon_coords = self.map._annotation_area
         polygon = Polygon(polygon_coords)
         character_img_size_list = list()
         for character in self.character_list:
